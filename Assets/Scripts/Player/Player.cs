@@ -8,6 +8,8 @@ public class Player : MonoBehaviour
     //public Vector2 velocity;
     public Rigidbody2D myRigidBody;
 
+    public HealthBase healthBase;
+
     [Header("SpeedSetup")]
     public float speed;
     public float speedRun;
@@ -22,14 +24,29 @@ public class Player : MonoBehaviour
     public float animationDuration = .3f;
 
     [Header("AnimationPlayer")]
-    public string boolRun = "Run"; //Mesmo nome que esta no Animator
+    public string boolRun = "Run";//Mesmo nome que esta no Animator
+    public string triggerDeath = "Death";
     public Animator animator;
     public float playerSwipeDuration = .2f;
+
+    
 
 
     private void Awake()
     {
         _currentSpeed = speed;
+
+        if(healthBase != null)
+        {
+            healthBase.OnKill += OnPlayerKill;
+        }
+    }
+
+    private void OnPlayerKill()
+    {
+        healthBase.OnKill -= OnPlayerKill;
+
+        animator.SetTrigger(triggerDeath);
     }
 
     void Update()
@@ -108,5 +125,10 @@ public class Player : MonoBehaviour
     private void HandleScaleJump()
     {
         //myRigidBody.transform.DOScaleY(jumpScaler, animationDuration).SetLoops(2, LoopType.Yoyo);
+    }
+
+    public void DestroyMe()
+    {
+        Destroy(gameObject);
     }
 }
