@@ -10,6 +10,12 @@ public class Player : MonoBehaviour
 
     public HealthBase healthBase;
 
+    public Animator animator;
+
+    [Header("Setup")]
+    public SOPlayer soPlayer;
+
+    /*
     [Header("SpeedSetup")]
     public float speed;
     public float speedRun;
@@ -19,22 +25,20 @@ public class Player : MonoBehaviour
     [Header("JumpSetup")]
     public float forceJump = 5f;
 
-    [Header("AnimationSetup")]
-    public float jumpScaler = 1.5f;
-    public float animationDuration = .3f;
-
     [Header("AnimationPlayer")]
     public string boolRun = "Run";//Mesmo nome que esta no Animator
-    public string triggerDeath = "Death";
-    public Animator animator;
-    public float playerSwipeDuration = .2f;
+    public string triggerDeath = "Death";  
+    public float playerSwipeDuration = .2f;*/
 
-    
+
+    /*[Header("AnimationSetup")]
+    public float jumpScaler = 1.5f;
+    public float animationDuration = .3f;*/
 
 
     private void Awake()
     {
-        _currentSpeed = speed;
+        soPlayer._currentSpeed = soPlayer.speed;
 
         if(healthBase != null)
         {
@@ -46,7 +50,7 @@ public class Player : MonoBehaviour
     {
         healthBase.OnKill -= OnPlayerKill;
 
-        animator.SetTrigger(triggerDeath);
+        animator.SetTrigger(soPlayer.triggerDeath);
     }
 
     void Update()
@@ -59,12 +63,12 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKey(KeyCode.LeftShift))
         {
-            _currentSpeed = speedRun;
+            soPlayer._currentSpeed = soPlayer.speedRun;
             animator.speed = 1.5f;
         }
         else
         {
-            _currentSpeed = speed;
+            soPlayer._currentSpeed = soPlayer.speed;
             animator.speed = 1f;
         }
 
@@ -72,44 +76,44 @@ public class Player : MonoBehaviour
         {
             //myRigidBody.MovePosition(myRigidBody.position - velocity * Time.deltaTime);
 
-            myRigidBody.velocity = new Vector2(-_currentSpeed, myRigidBody.velocity.y);
+            myRigidBody.velocity = new Vector2(-soPlayer._currentSpeed, myRigidBody.velocity.y);
 
             if(myRigidBody.transform.localScale.x != -1)
             {
-                myRigidBody.transform.DOScaleX(-1, playerSwipeDuration);
+                myRigidBody.transform.DOScaleX(-1, soPlayer.playerSwipeDuration);
                 //myRigidBody.transform.localScale = new Vector3(-1, 1, 1);
             }
 
 
-            animator.SetBool(boolRun, true);
+            animator.SetBool(soPlayer.boolRun, true);
         }
         else if (Input.GetKey(KeyCode.RightArrow))
         {
             //myRigidBody.MovePosition(myRigidBody.position + velocity * Time.deltaTime);
 
-            myRigidBody.velocity = new Vector2(+_currentSpeed, myRigidBody.velocity.y);
+            myRigidBody.velocity = new Vector2(+soPlayer._currentSpeed, myRigidBody.velocity.y);
             
             if (myRigidBody.transform.localScale.x != 1)
             {
-                myRigidBody.transform.DOScaleX(1, playerSwipeDuration);
+                myRigidBody.transform.DOScaleX(1, soPlayer.playerSwipeDuration);
                 //myRigidBody.transform.localScale = new Vector3(1, 1, 1);
             }
 
 
-            animator.SetBool(boolRun, true);
+            animator.SetBool(soPlayer.boolRun, true);
         }
         else
         {
-            animator.SetBool(boolRun, false);
+            animator.SetBool(soPlayer.boolRun, false);
         }
 
         if(myRigidBody.velocity.x > 0)//Adicionar uma fricçao para parar o player quando vai para direita
         {
-            myRigidBody.velocity -= friction; 
+            myRigidBody.velocity -= soPlayer.friction; 
         }
         else if(myRigidBody.velocity.x < 0)
         {
-            myRigidBody.velocity += friction;
+            myRigidBody.velocity += soPlayer.friction;
         }
     }
 
@@ -117,7 +121,7 @@ public class Player : MonoBehaviour
     {
         if (Input.GetKeyDown(KeyCode.Space))
         {
-            myRigidBody.velocity = Vector2.up * forceJump;
+            myRigidBody.velocity = Vector2.up * soPlayer.forceJump;
             //HandleJump();
         }           
     }
