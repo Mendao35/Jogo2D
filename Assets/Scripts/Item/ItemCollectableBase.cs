@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -5,7 +6,20 @@ using UnityEngine;
 public class ItemCollectableBase : MonoBehaviour
 {
     public string compareTag = "Player";
+    public new ParticleSystem particleSystem;
+    public float timeToHide = 3f;
+    public GameObject graphicItem;
 
+
+    private void Awake()
+    {
+        //particleSystem = GetComponent<ParticleSystem>();
+        /*if(particleSystem != null)
+        {
+            particleSystem.transform.SetParent(null);
+        }*/
+        
+    }
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.transform.CompareTag(compareTag))
@@ -16,15 +30,27 @@ public class ItemCollectableBase : MonoBehaviour
 
     protected virtual void Collect()
     {
-        
-        gameObject.SetActive(false);
+        if(graphicItem != null)
+        {
+            graphicItem.SetActive(false);
+        }
+        Invoke(nameof(HideObject), timeToHide);
         OnCollect();
 
+    }
+        
+
+    private void HideObject()
+    {
+        gameObject.SetActive(false);
     }
 
     protected virtual void OnCollect()
     {
-
+        if(particleSystem != null)
+        {
+            particleSystem.Play();
+        }
 
     }
 
