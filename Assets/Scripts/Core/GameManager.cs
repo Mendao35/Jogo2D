@@ -27,7 +27,7 @@ public class GameManager : Singleton<GameManager>
     }
     public void Init()
     {
-        SpawnPlayer();
+        //SpawnPlayer();
     }
 
     public void SpawnPlayer()
