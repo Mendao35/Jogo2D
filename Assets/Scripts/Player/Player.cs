@@ -20,6 +20,7 @@ public class Player : MonoBehaviour
     public float distToGround; //Distancia pro Chao
     public float spaceToGround = .1f;
     public ParticleSystem jumpVfx;
+    public AudioSource jumpAudio;
 
     /*
     [Header("SpeedSetup")]
@@ -151,6 +152,7 @@ public class Player : MonoBehaviour
     private void PlayJumpVFX()
     {
         VFXManager.Instance.PlayVFXByType(VFXManager.VFXType.JUMP, transform.position);
+        jumpAudio.Play();
        /*if(jumpVfx != null)
         {
             jumpVfx.Play();

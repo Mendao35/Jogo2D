@@ -1393,6 +1393,10 @@ Transform:
   - {fileID: 676623596}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  - {fileID: 1110821232}
+>>>>>>> Stashed changes
 =======
   - {fileID: 1110821232}
 >>>>>>> Stashed changes
@@ -5518,6 +5522,14 @@ CanvasRenderer:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1504733655}
   m_CullTransparentMesh: 1
+<<<<<<< Updated upstream
+=======
+--- !u!82 &1511235064 stripped
+AudioSource:
+  m_CorrespondingSourceObject: {fileID: 5754715801235456305, guid: db57a02b2be9e4f4bb063bc064cbd95b, type: 3}
+  m_PrefabInstance: {fileID: 8412835555417282794}
+  m_PrefabAsset: {fileID: 0}
+>>>>>>> Stashed changes
 --- !u!1 &1553952271
 GameObject:
   m_ObjectHideFlags: 0
@@ -13524,7 +13536,11 @@ PrefabInstance:
     - target: {fileID: 291032259147075030, guid: db57a02b2be9e4f4bb063bc064cbd95b, type: 3}
       propertyPath: jumpAudio
       value: 
+<<<<<<< Updated upstream
       objectReference: {fileID: 0}
+=======
+      objectReference: {fileID: 1511235064}
+>>>>>>> Stashed changes
     - target: {fileID: 1665126128030848613, guid: db57a02b2be9e4f4bb063bc064cbd95b, type: 3}
       propertyPath: m_LocalPosition.x
       value: -6
@@ -13594,6 +13610,10 @@ SceneRoots:
   - {fileID: 287852400}
 <<<<<<< Updated upstream
 <<<<<<< Updated upstream
+<<<<<<< Updated upstream
+=======
+  - {fileID: 1713055465}
+>>>>>>> Stashed changes
 =======
   - {fileID: 1713055465}
 >>>>>>> Stashed changes
